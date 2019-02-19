@@ -1,0 +1,5 @@
+these versions have no OCR integration.
+version 0.1: full functionality, but requires users to input verification code manually.
+version 1.1: enhanced HTML output.
+version 2.1: enhanced HTML/css output.
+version 3.1: add dismiss button, add notification about no-hit subscriptions.
