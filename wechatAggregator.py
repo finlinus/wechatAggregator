@@ -28,6 +28,7 @@ def gzh_update(subscription_file='wechat_subscriptions.txt', headline=False, ori
     '''
     with open(subscription_file, 'r', encoding='utf8') as f:
        accounts = [account.strip() for account in f.readlines()]
+    # add accounts
     if add_account is not None:
         for new_account in add_account: 
             if new_account not in accounts:
@@ -35,26 +36,34 @@ def gzh_update(subscription_file='wechat_subscriptions.txt', headline=False, ori
                 with open(subscription_file, 'a', encoding='utf8') as f:
                     f.write(new_account + '\n')
             else:
-                print('Got duplicate ' + new_account)
-    ws_api = wechatsogou.WechatSogouAPI(captcha_break_time=3)
+                print('Got duplicate account: ' + new_account)
+    # fetch articles
     articles, account_nohit = [], []
-    for account in accounts:
-        contents_ = ws_api.get_gzh_article_by_history(keyword=account)
-        if contents_ != dict():
-            articles_ = contents_['article']
-            for article_ in articles_:
-                article_['Account name'] = contents_['gzh']['wechat_name']
-            articles.extend(articles_)
-        else:
-            account_nohit.append(account)
+    if len(accounts) > 0:
+        ws_api = wechatsogou.WechatSogouAPI(captcha_break_time=3)
+        for account in accounts:
+            try:
+                contents_ = ws_api.get_gzh_article_by_history(keyword=account)
+            except:
+                contents_ = dict()    
+            if contents_ != dict():
+                articles_ = contents_['article']
+                for article_ in articles_:
+                    article_['Account name'] = contents_['gzh']['wechat_name']
+                articles.extend(articles_)
+            else:
+                account_nohit.append(account)
+    else:
+        articles = []
     # filter time
-    timestamp = int((datetime.datetime.now()-datetime.timedelta(days=timedel)).timestamp())
-    articles = [article for article in articles if article['datetime'] > timestamp]
+    if len(articles) > 0:
+        timestamp = int((datetime.datetime.now()-datetime.timedelta(days=timedel)).timestamp())
+        articles = [article for article in articles if article['datetime'] > timestamp]
     # filter headlines
-    if headline:
+    if headline and len(articles) > 0:
         articles = [article for article in articles if article['main'] == 1]
     # filter origins
-    if original:
+    if original and len(articles) > 0:
         articles = [article for article in articles if article['copyright_stat'] == 100]        
     # Final formatting
     articles_ = []
@@ -68,8 +77,8 @@ def gzh_update(subscription_file='wechat_subscriptions.txt', headline=False, ori
 def to_html(articles, account_nohit=list(), html_file='wechat_portal.html'):
     html_header = ['<!DOCTYPE HTML>', '<html>', '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />', 
                    '<head>', '<title>Wechat Portal</title>', '<link rel="stylesheet" type="text/css" href="src/mystyle.css">', 
-                   '</head>', '<body>', '<div id="headlinks">', '<a href="src/README.txt" target="_blank">About</a>&nbsp&nbsp&nbsp', 
-                   '<a href="mailto:finlinus@foxmail.com?Subject=Hello,%20I\'d..." target="_top">Contact</a>', 
+                   '</head>', '<body>', '<div id="headlinks">', '<a href="src/README.md" target="_blank">About</a>&nbsp&nbsp&nbsp', 
+                   '<a href="mailto:finlinus@foxmail.com?Subject=Hello,..." target="_top">Contact</a>', 
                    '</div>', '<div id="welcome"><div id="intro">', '<h1>WELCOME</h1>', 
                    '<h2>Below are most recent activities of your WeChat subsciptions.</h2>', '</div></div></header>', 
                    '<table>', '<script>', 'function DeleteRow(o){', 'var p=o.parentNode.parentNode;', 
@@ -87,7 +96,7 @@ def to_html(articles, account_nohit=list(), html_file='wechat_portal.html'):
         nohit_ = '<h4>' + ', '.join(account_nohit) + '</h4>'
         warning_ = ['<div id="footer"><h3>These subscriptions did NOT return any article:</h3>', nohit_, 
                     '<p>If this is not normal, please recheck names of these subscriptions in file wechat_subscriptions.txt.</p>', 
-                    '<p>If problem persists, feel free to contact <a href="mailto:finlinus@foxmail.com?Subject=Hello,%20I\'d..." target="_top">me</a>.</p>']
+                    '<p>If problem persists, feel free to contact <a href="mailto:finlinus@foxmail.com?Subject=Hello,..." target="_top">me</a>.</p>']
         html_footer = ['</tbody>', '</table><hr>']
         html_footer.extend(warning_)
         html_footer.extend(['</div></body>', '</html>'])
