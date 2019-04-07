@@ -1,4 +1,5 @@
 wechatAggregator by @finn(finlinus@foxmail.com)
+
 提供两种实现方式：
 wechatsogou---------->wechatAggregator.py[Method 1];
 登录个人公众号-------->wechatAggregator2.py[selenium-based, Method 2], wechatAggregator3.py[requests-based, Method 3]
