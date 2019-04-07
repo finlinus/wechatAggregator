@@ -1,5 +1,9 @@
-these versions have no OCR integration.
-version 0.1: full functionality, but requires users to input verification code manually.
-version 1.1: enhanced HTML output.
-version 2.1: enhanced HTML/css output.
-version 3.1: add dismiss button, add notification about no-hit subscriptions.
+version 0.0.1: full functionality, but requires users to input verification code manually.
+version 0.0.2: ruokuai OCR was integrated to go through verification procedure.
+version 0.1.1: enhanced HTML output, no OCR.
+version 0.1.2: enhanced HTML output, with OCR.
+version 0.2.1: enhanced HTML/css output, no OCR.
+version 0.2.2: enchanced HTML/css output, with OCR.
+version 0.3.1: add dismiss button, add notification about no-hit subscriptions, with OCR.
+version 0.3.2: new method. search queries using cookies and tokens obtained via wechat subscription account login, selenium-based.
+version 0.3.3: new method. search queries using tokens obtained via wechat subscription account login, requests-based.
