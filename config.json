@@ -1,0 +1,42 @@
+{
+    "Method 1": {
+        "Method description": "via sogou search",
+        "Parameters": {
+            "subscription_file": "wechat_subscriptions.txt",
+            "html_file": "wechat_portal.html",
+            "timedel": 1,
+            "headline": false,
+            "original": true,
+            "sort_by_time": true,
+            "add_account": null
+        }
+    },
+    "Method 2": {
+        "Method description": "via wechat subscription account login with selenium",
+        "Parameters": {
+            "subscription_file": "wechat_subscriptions.txt",
+            "html_file": "wechat_portal.html",
+            "timedel": 1,
+            "max_trial": 5,
+            "sort_by_time": true,
+            "update_cookie": true,
+            "add_account": null,
+			"username": "finlinus@foxmail.com",
+			"password": "zgf241300*ARCH"
+        }
+    },
+    "Method 3": {
+        "Method description": "via wechat subscription account login with requests",
+        "Parameters": {
+            "subscription_file": "wechat_subscriptions.txt",
+            "html_file": "wechat_portal.html",
+            "timedel": 1,
+            "max_trial": 5,
+            "sort_by_time": true,
+			"sync_account": false,
+            "add_account": null,
+			"username": "finlinus@foxmail.com",
+			"password": "fe2fc5f458b1cbfedb95f0d79201e242"   
+        }
+    }
+}
