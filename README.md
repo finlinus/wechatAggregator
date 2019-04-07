@@ -1,8 +1,12 @@
 wechatAggregator by @finn(finlinus@foxmail.com)
 
 提供两种实现方式：
-wechatsogou---------->wechatAggregator.py[Method 1];
-登录个人公众号-------->wechatAggregator2.py[selenium-based, Method 2], wechatAggregator3.py[requests-based, Method 3]
+
+wechatsogou }---------->wechatAggregator.py[Method 1];
+
+登录个人公众号 }-------->wechatAggregator2.py[selenium-based, Method 2], 
+
+              }--------->wechatAggregator3.py[requests-based, Method 3]
 
 本程序根据自定义的公众号列表，将这些公众号过去24小时之内发布的内容汇总到一个网页，以应对需要电脑上处理文章的情形。
 This program creates a web portal which summarizes activities of all your WeChat subscriptions in last 24 hours.
