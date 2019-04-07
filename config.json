@@ -21,8 +21,8 @@
             "sort_by_time": true,
             "update_cookie": true,
             "add_account": null,
-			"username": "finlinus@foxmail.com",
-			"password": "zgf241300*ARCH"
+			"username": "",
+			"password": ""
         }
     },
     "Method 3": {
@@ -35,8 +35,8 @@
             "sort_by_time": true,
 			"sync_account": false,
             "add_account": null,
-			"username": "finlinus@foxmail.com",
-			"password": "fe2fc5f458b1cbfedb95f0d79201e242"   
+			"username": "",
+			"password": ""   
         }
     }
 }
