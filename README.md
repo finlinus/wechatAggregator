@@ -1,4 +1,4 @@
-wechatAggregator by @finn(finlinus@foxmail.com)
+wechatAggregator
 
 提供两种实现方式：
 
